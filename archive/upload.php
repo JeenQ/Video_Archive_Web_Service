@@ -55,25 +55,24 @@
 	</header>
 
     <!-- 업로드 폼 -->
-    <form name="file_send" action="http://localhost/archive/receive.php" method="post" enctype="multipart/form-data">
-
+    <form name="file_send" onsubmit="return check()" action="http://localhost/archive/receive.php" method="post" enctype="multipart/form-data">
       <div class="col-md-offset-1">
         <div class="row" style="margin-top: 1vh">
-    			<label class="col-md-2" for="date">촬영일</label>
+    			<label class="col-md-2" for="date">촬영일*</label>
           <div class="col-md-8">
     			     <input type="date" class="form-control" id="date" name="date" value=""/>
           </div>
         </div>
 
         <div class="row" style="margin-top: 1vh">
-    			<label class="col-md-2" for="title">제목</label>
+    			<label class="col-md-2" for="title">제목*</label>
           <div class="col-md-8">
     			     <input type="text" class="form-control" id="title" name="title" value=""/>
           </div>
         </div>
-
+      
         <div class="row" style="margin-top: 1vh">
-    			<label class="col-md-2" for="company">업체</label>
+    			<label class="col-md-2" for="company">업체*</label>
           <div class="col-md-8">
             <select class="form-control" id="company" name="company">
               <option> </option>
@@ -98,21 +97,21 @@
         </div>
 
         <div class="row" style="margin-top: 1vh">
-    			<label class="col-md-2" for="place">촬영장소</label>
+    			<label class="col-md-2" for="place">촬영장소*</label>
           <div class="col-md-8">
     			     <input type="text" class="form-control" id="place" name="place" value=""/>
           </div>
         </div>
 
         <div class="row" style="margin-top: 1vh">
-          <label class="col-md-2" for="cameraman">촬영자</label>
+          <label class="col-md-2" for="cameraman">촬영자*</label>
           <div class="col-md-8">
                <input type="text" class="form-control" id="cameraman" name="cameraman" value=""/>
           </div>
         </div>
 
         <div class="row" style="margin-top: 1vh">
-    			<label class="col-md-2" for="equipment">촬영장비</label>
+    			<label class="col-md-2" for="equipment">촬영장비*</label>
           <div class="col-md-8">
     			     <input type="text" class="form-control" id="equipment" name="equipment" value=""/>
           </div>
@@ -134,9 +133,9 @@
         </div>
 
       <div class="row" style="margin-top: 1vh">
-  			<label class="col-md-2" for="video">영상</label>
+  			<label class="col-md-2" for="video">영상*</label>
         <div class="col-md-8">
-  			     <input multiple="multiple" type="file" name="video[]">
+  			     <input multiple="multiple" id="video" type="file" name="video[]">
         </div>
       </div>
 
@@ -152,8 +151,41 @@
            <input style="margin-top: 4vh" type="submit" value="보내기" name="submit" class="btn btn-default col-md-offset-8 col-md-2">
         </div>
       </div>
-
     </form>
+    <script>
+    function check(){
+      var myform = document.forms['file_send'];
+      if(myform['date'].value.length < 1){
+        alert('촬영일을 입력 하세요.');
+        return false;
+      }
+      if(myform['title'].value.length < 1){
+        alert('제목을 입력 하세요.');
+        return false;
+      }
+      if(myform['company'].value.length < 1){
+        alert('업체를 입력 하세요.');
+        return false;
+      }
+      if(myform['place'].value.length < 1){
+        alert('촬영장소를 입력 하세요.');
+        return false;
+      }
+      if(myform['cameraman'].value.length < 1){
+        alert('촬영자를 입력 하세요.');
+        return false;
+      }
+      if(myform['equipment'].value.length < 1){
+        alert('촬영장비를 입력 하세요.');
+        return false;
+      }
+      if(myform['video'].value.length < 1){
+        alert('영상파일이 없습니다.');
+        return false;
+      }
+      return true;
+    }
+    </script>
   </div>
 </body>
 </html>
