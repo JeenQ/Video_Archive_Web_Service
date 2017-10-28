@@ -184,7 +184,7 @@ table tr td a {
         <?php
         for($i = 1; $i < 5; $i++){
           $contentsNum = $i * 3;
-          echo '<li role="presentation"><a role="menuitem" tabindex="-1" href="http://<?php echo $localhost ?>/archive/main.php?contents='.$contentsNum.'">'.$contentsNum.'</a></li>';
+          echo '<li role="presentation"><a role="menuitem" tabindex="-1" href="http://'.$localhost.'/archive/main.php?contents='.$contentsNum.'">'.$contentsNum.'</a></li>';
         }
         ?>
       </ul>
@@ -197,7 +197,7 @@ table tr td a {
           <?php
           for($i = 1; $i < 5; $i++){
             $contentsNum = $i * 3;
-            echo '<li role="presentation"><a role="menuitem" tabindex="-1" href="http://<?php echo $localhost ?>/archive/main.php?contents='.$contentsNum.'">'.$contentsNum.'</a></li>';
+            echo '<li role="presentation"><a role="menuitem" tabindex="-1" href="http://'.$localhost.'/archive/main.php?contents='.$contentsNum.'">'.$contentsNum.'</a></li>';
           }
           ?>
         </ul>
@@ -210,7 +210,7 @@ table tr td a {
             <?php
             for($i = 1; $i < 5; $i++){
               $contentsNum = $i * 3;
-              echo '<li role="presentation"><a role="menuitem" tabindex="-1" href="http://<?php echo $localhost ?>/archive/main.php?contents='.$contentsNum.'">'.$contentsNum.'</a></li>';
+              echo '<li role="presentation"><a role="menuitem" tabindex="-1" href="http://'.$localhost.'/archive/main.php?contents='.$contentsNum.'">'.$contentsNum.'</a></li>';
             }
             ?>
           </ul>
@@ -223,7 +223,7 @@ table tr td a {
               <?php
               for($i = 1; $i < 5; $i++){
                 $contentsNum = $i * 3;
-                echo '<li role="presentation"><a role="menuitem" tabindex="-1" href="http://<?php echo $localhost ?>/archive/main.php?contents='.$contentsNum.'">'.$contentsNum.'</a></li>';
+                echo '<li role="presentation"><a role="menuitem" tabindex="-1" href="http://'.$localhost.'/archive/main.php?contents='.$contentsNum.'">'.$contentsNum.'</a></li>';
               }
               ?>
             </ul>
@@ -241,7 +241,7 @@ table tr td a {
       <?php
       for($i = 1; $i < 5; $i++){
         $contentsNum = $i * 3;
-        echo '<li role="presentation"><a role="menuitem" tabindex="-1" href="http://<?php echo $localhost ?>/archive/main.php?contents='.$contentsNum.'">'.$contentsNum.'</a></li>';
+        echo '<li role="presentation"><a role="menuitem" tabindex="-1" href="http://'.$localhost.'/archive/main.php?contents='.$contentsNum.'">'.$contentsNum.'</a></li>';
       }
       ?>
     </ul>
@@ -260,8 +260,8 @@ table tr td a {
   </form>
 
   <?php
-    define('UPLOADPATH', 'http://<?php echo $localhost ?>/video/');  //동영상 폴더 경로
-    define('FILEPATH', 'http://<?php echo $localhost ?>/file/');  //동영상 폴더 경로
+    define('UPLOADPATH', 'http://'.$localhost.'/video/');  //동영상 폴더 경로
+    define('FILEPATH', 'http://'.$localhost.'/file/');  //동영상 폴더 경로
 
     //Database 및 table 접근하기
     mysqli_select_db($conn, "archive_db");
@@ -354,7 +354,7 @@ table tr td a {
           if($file['video_key']!=null){
             echo '
                   <tbody>
-                    <tr style="cursor:pointer;" onclick="location.href=\'http://<?php echo $localhost ?>/archive/main.php?page='.$page.'&viewNum='.$count.'\'" onmouseover="window.status=\'http://www.happyjung.com/\'" onmouseout="window.status=\'\'">
+                    <tr style="cursor:pointer;" onclick="location.href=\'http://'.$localhost.'/archive/main.php?page='.$page.'&viewNum='.$count.'\'" onmouseover="window.status=\'http://www.happyjung.com/\'" onmouseout="window.status=\'\'">
                       <td>'.$file['video_key'].'</td>
                       <td>'.$file['shoot_date'].'</td>
                       <td>'.$file['title'].'</td>
@@ -399,7 +399,7 @@ table tr td a {
          $searchText2 = "";
        for($i = 0; $i < $count/$contents; $i++){
          $pageNum = $i + 1;
-         echo '<li><a href="http://<?php echo $localhost ?>/archive/main.php?page='.$i.'&searchPre='.$searchText.'&searchPre2='.$searchText2.'">'.$pageNum.'</a></li>';
+         echo '<li><a href="http://'.$localhost.'/archive/main.php?page='.$i.'&searchPre='.$searchText.'&searchPre2='.$searchText2.'">'.$pageNum.'</a></li>';
        }
        ?>
  	    <li><a href="#"><span aria-hidden="true">»</span><span class="sr-only">Next</span></a></li>
