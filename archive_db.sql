@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- 생성 시간: 17-10-28 08:48
+-- 생성 시간: 17-10-28 12:04
 -- 서버 버전: 5.6.36
 -- PHP 버전: 5.6.31
 
@@ -43,9 +43,7 @@ CREATE TABLE `tb_account` (
 --
 
 INSERT INTO `tb_account` (`key_num`, `id`, `password`, `name`, `position`, `level`, `last_login`) VALUES
-(12, 'level2', 'level2', '일반회원', '팀장', 2, '2017-09-04 08:39:50'),
-(13, 'level1', 'level1', '열람회원', '평사원', 3, '2017-09-04 08:40:13'),
-(14, 'admin', 'admin', 'admin', 'admin', 1, '2017-10-28 15:44:07');
+(14, 'admin', 'admin', 'admin', 'admin', 1, '2017-10-28 18:07:18');
 
 -- --------------------------------------------------------
 
@@ -74,10 +72,7 @@ CREATE TABLE `tb_company` (
 
 INSERT INTO `tb_company` (`company_name`) VALUES
 ('KAI'),
-('LIG NEXT'),
-('국방과학연구소'),
-('대한항공'),
-('한화디펜스');
+('LIG NEXT');
 
 -- --------------------------------------------------------
 
@@ -175,7 +170,7 @@ ALTER TABLE `tb_file`
 -- 테이블의 AUTO_INCREMENT `tb_video`
 --
 ALTER TABLE `tb_video`
-  MODIFY `video_key` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;COMMIT;
+  MODIFY `video_key` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
