@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 
 <?php
+	  include 'dbProperty.php';
   session_start();
   if(!isset($_SESSION['key_num'])){  //로그인 했던 사용자가 아닐경우 로그인 페이지로 보내기
     echo '<script type="text/javascript">'.
@@ -15,8 +16,6 @@
 
   $time = time();
 
-  $conn = mysqli_connect('localhost', 'root', 123456)
-    or die('Error connection to MySQL server');
   mysqli_select_db($conn, "archive_db");
 
   define('UPLOADPATH', $_SERVER['DOCUMENT_ROOT'].'/video/');

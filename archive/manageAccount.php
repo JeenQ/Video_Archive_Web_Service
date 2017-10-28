@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 
 <?php
+	  include 'dbProperty.php';
     session_start();
     if(!isset($_SESSION['key_num']) || $_SESSION['level']!=1){  //로그인 했던 사용자가 아닐경우 로그인 페이지로 보내기
       echo '<script type="text/javascript">'.
@@ -18,8 +19,6 @@
 <?php  //계정 추가 요청을 처리하기 위한 블럭
   if(isset($_POST['accountSubmit'])){ //계정 생성 제출 버튼이 눌러졌는지 확인
     /* DB 연결하기 */
-    $conn = mysqli_connect('localhost', 'root', 123456)
-      or die('Error connection to MySQL server');
     mysqli_select_db($conn, "archive_db");
 
     /*input data 를 변수로 저장*/

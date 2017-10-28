@@ -1,4 +1,5 @@
 <?php
+	  include 'dbProperty.php';
   session_start();
   session_destroy();  //session 끝내기
 

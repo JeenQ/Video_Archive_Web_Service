@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 
 <?php
+	  include 'dbProperty.php';
     session_start();
     if(!isset($_SESSION['key_num']) || $_SESSION['level']!=1){  //로그인 했던 사용자가 아니거나, 관리자가 아닐경우 로그인 페이지로 보내기
       echo '<script type="text/javascript">'.
@@ -233,8 +234,6 @@
           </tr>
 
           <?php  //모든 계정을 불러와서 출력해준다
-        $conn = mysqli_connect('localhost', 'root', 123456)
-          or die('Error connection to MySQL server');
         mysqli_select_db($conn, "archive_db");
 
         $connect = mysqli_query($conn, 'SELECT * FROM tb_account');

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 
 <?php
+	  include 'dbProperty.php';
     session_start();
     if(!isset($_SESSION['key_num'])){  //로그인 했던 사용자가 아닐경우 로그인 페이지로 보내기
       echo '<script type="text/javascript">'.
@@ -263,8 +264,6 @@ table tr td a {
     define('FILEPATH', 'http://localhost/file/');  //동영상 폴더 경로
 
     //Database 및 table 접근하기
-    $conn = mysqli_connect('localhost', 'root', 123456)
-      or die('Error connection to MySQL server');
     mysqli_select_db($conn, "archive_db");
 
     $searchQuery = " WHERE title REGEXP '.'";

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 
 <?php
+	  include 'dbProperty.php';
     session_start();
     if(!isset($_SESSION['key_num']) || $_SESSION['level']==3){  //로그인 했던 사용자가 아니거나, 업로드 제한 계정일 경우 로그인 페이지로 보내기
       echo '<script type="text/javascript">'.
@@ -77,8 +78,6 @@
             <select class="form-control" id="company" name="company">
               <option> </option>
               <?php
-                $conn = mysqli_connect('localhost', 'root', 123456)
-                  or die('Error connection to MySQL server');
                 mysqli_select_db($conn, "archive_db");
                 $connect = mysqli_query($conn, 'SELECT * FROM tb_company');
                 while(true){

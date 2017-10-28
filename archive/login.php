@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 
 <?php
+	include 'dbProperty.php';
 	session_start();
 
 	if(isset($_SESSION['key_num'])){  //로그인 했던 사용자일 경우 메인 페이지로 보내기
@@ -10,8 +11,6 @@
 	}
 
 	/* mysql 및 'archive_db' 연결 열기 */
-	$conn = mysqli_connect('localhost', 'root', 123456)
-		or die('Error connection to MySQL server');
 	mysqli_select_db($conn, "archive_db");
 
 	$check = 0;	//로그인 시도 결과를 저장하기 위한 변수
