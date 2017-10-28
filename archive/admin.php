@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 
 <?php
-	  include 'dbProperty.php';
+	  include 'property.php';
     session_start();
     if(!isset($_SESSION['key_num']) || $_SESSION['level']!=1){  //로그인 했던 사용자가 아니거나, 관리자가 아닐경우 로그인 페이지로 보내기
       echo '<script type="text/javascript">'.
-              'location.replace("http://localhost/archive/login.php");'.
+              'location.replace("http://'.$localhost.'/archive/login.php");'.
                 '</script>';
       exit();
     }
@@ -22,12 +22,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<!-- import bootstarp for CSS -->
-	<link rel="stylesheet" href="http://localhost/resources/bootstrap/css/bootstrap.css">
+	<link rel="stylesheet" href="http://<?php echo $localhost ?>/resources/bootstrap/css/bootstrap.css">
 
 	<!-- jQuery for using bootstrap.js -->
-	<script src="http://localhost/resources/jquery-3.2.1.min.js"></script>
+	<script src="http://<?php echo $localhost ?>/resources/jquery-3.2.1.min.js"></script>
   <!-- import bootstarp for javascript -->
-  <script src="http://localhost/resources/bootstrap/js/bootstrap.min.js"></script>
+  <script src="http://<?php echo $localhost ?>/resources/bootstrap/js/bootstrap.min.js"></script>
 
   <style>
       .add_btn {
@@ -109,13 +109,13 @@
 
 		function popup_upload(){
 			window.open(
-				"http://localhost/archive/upload.php",
+				"http://<?php echo $localhost ?>/archive/upload.php",
 				"업로드",
 				"width="+w+",height="+h+",top="+Top+",left="+Left+", scrollbars=no");
 		}
     function popup_addCompany(){
       window.open(
-        "http://localhost/archive/addCompany.php",
+        "http://<?php echo $localhost ?>/archive/addCompany.php",
         "회사 추가",
         "width="+w+",height="+h+",top="+Top+",left="+Left+", scrollbars=no");
     }
@@ -125,8 +125,8 @@
 <body>
 	<header>
     <ul class="nav nav-tabs">
-      <a class="navbar-brand" href="http://localhost" style="padding-top: 0px;"><img height="45px" src="http://localhost/image/logo.png"></a>
-      <li role="presentation" class="main" onmouseover="javascript:visible()"><a href="http://localhost/archive/main.php">Archive</a></li>
+      <a class="navbar-brand" href="http://<?php echo $localhost ?>" style="padding-top: 0px;"><img height="45px" src="http://<?php echo $localhost ?>/image/logo.png"></a>
+      <li role="presentation" class="main" onmouseover="javascript:visible()"><a href="http://<?php echo $localhost ?>/archive/main.php">Archive</a></li>
 
       <?php
         if($level == 2 || $level == 1){
@@ -136,13 +136,13 @@
 
       <?php
         if($level == 1){
-          echo '<li class="active" role="presentation" ><a href="http://localhost/archive/admin.php">Admin</a></li>';
+          echo '<li class="active" role="presentation" ><a href="http://'.$localhost.'/archive/admin.php">Admin</a></li>';
         }
       ?>
 
       <?php
         echo '<p class="col-md-offset-9" style="margin-top: 10px">안녕하세요 '.$name.' 님! &nbsp
-                <a href="http://localhost/archive/logout.php">logout</a></p>'
+                <a href="http://'.$localhost.'/archive/logout.php">logout</a></p>'
       ?>
     </ul>
 	</header>
@@ -155,7 +155,7 @@
       </div>
 
       <div class="panel-body">
-        <form class="form-horizontal" action="http://localhost/archive/manageAccount.php" method="post">
+        <form class="form-horizontal" action="http://<?php echo $localhost ?>/archive/manageAccount.php" method="post">
         <div class="form-group">
           <label for="newID" class="col-md-2 control-label">ID</label>
           <div class="col-md-7">
@@ -313,7 +313,7 @@
                   if($("#row"+i).length==0)
                     break;
                   else
-                    $("#row"+i).after("<td id=\"deleteButton"+i+"\"><a href=\"http://localhost/archive/manageAccount.php?id="+$("#id"+i).text()+"\"><button type=\"button\" class=\"btn btn-danger btn-xs\">삭제</button></a></td>");
+                    $("#row"+i).after("<td id=\"deleteButton"+i+"\"><a href=\"http://<?php echo $localhost ?>/archive/manageAccount.php?id="+$("#id"+i).text()+"\"><button type=\"button\" class=\"btn btn-danger btn-xs\">삭제</button></a></td>");
               }
           }else{
             for(var i=0; ; i++){

@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 
 <?php
-	  include 'dbProperty.php';
+	  include 'property.php';
     session_start();
     if(!isset($_SESSION['key_num']) || $_SESSION['level']==3){  //로그인 했던 사용자가 아니거나, 업로드 제한 계정일 경우 로그인 페이지로 보내기
       echo '<script type="text/javascript">'.
-              'location.replace("http://localhost/archive/login.php");'.
+              'location.replace("http://'.$localhost.'/archive/login.php");'.
                 '</script>';
       exit();
     }
@@ -23,12 +23,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<!-- import bootstarp for CSS -->
-	<link rel="stylesheet" href="http://localhost/resources/bootstrap/css/bootstrap.css">
+	<link rel="stylesheet" href="http://<?php echo $localhost ?>/resources/bootstrap/css/bootstrap.css">
 
 	<!-- jQuery for using bootstrap.js -->
-	<script src="http://localhost/resources/jquery-3.2.1.min.js"></script>
+	<script src="http://<?php echo $localhost ?>/resources/jquery-3.2.1.min.js"></script>
   <!-- import bootstarp for javascript -->
-  <script src="http://localhost/resources/bootstrap/js/bootstrap.min.js"></script>
+  <script src="http://<?php echo $localhost ?>/resources/bootstrap/js/bootstrap.min.js"></script>
 
   <script>
     <?php
@@ -45,18 +45,18 @@
 <body>
   <header>
     <ul class="nav nav-tabs">
-      <a class="navbar-brand" href="http://localhost" style="padding-top: 0px;"><img height="45px" src="http://localhost/image/logo.png"></a>
-      <li role="presentation" class="active"><a href="http://localhost/archive/upload.php">Upload</a></li>
+      <a class="navbar-brand" href="http://<?php echo $localhost ?>" style="padding-top: 0px;"><img height="45px" src="http://<?php echo $localhost ?>/image/logo.png"></a>
+      <li role="presentation" class="active"><a href="http://<?php echo $localhost ?>/archive/upload.php">Upload</a></li>
 
       <?php
         echo '<p class="col-md-offset-9" style="margin-top: 10px">안녕하세요 '.$name.' 님! &nbsp
-                <a href="http://localhost/archive/logout.php">logout</a></p>'
+                <a href="http://'.$localhost.'/archive/logout.php">logout</a></p>'
       ?>
 
 	</header>
 
     <!-- 업로드 폼 -->
-    <form name="file_send" onsubmit="return check()" action="http://localhost/archive/receive.php" method="post" enctype="multipart/form-data">
+    <form name="file_send" onsubmit="return check()" action="http://<?php echo $localhost ?>/archive/receive.php" method="post" enctype="multipart/form-data">
       <div class="col-md-offset-1">
         <div class="row" style="margin-top: 1vh">
     			<label class="col-md-2" for="date">촬영일*</label>

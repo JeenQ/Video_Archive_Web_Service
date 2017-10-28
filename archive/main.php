@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 
 <?php
-	  include 'dbProperty.php';
+	  include 'property.php';
     session_start();
     if(!isset($_SESSION['key_num'])){  //로그인 했던 사용자가 아닐경우 로그인 페이지로 보내기
       echo '<script type="text/javascript">'.
-              'location.replace("http://localhost/archive/login.php");'.
+              'location.replace("http://'.$localhost.'/archive/login.php");'.
                 '</script>';
     }
     if(isset($_GET['contents']))
@@ -99,12 +99,12 @@ table tr td a {
   <title>Archive System</title>
 
 	<!-- import bootstarp for CSS -->
-	<link rel="stylesheet" href="http://localhost/resources/bootstrap/css/bootstrap.css">
+	<link rel="stylesheet" href="http://<?php echo $localhost ?>/resources/bootstrap/css/bootstrap.css">
 
 	<!-- jQuery for using bootstrap.js -->
-	<script src="http://localhost/resources/jquery-3.2.1.min.js"></script>
+	<script src="http://<?php echo $localhost ?>/resources/jquery-3.2.1.min.js"></script>
   <!-- import bootstarp for javascript -->
-  <script src="http://localhost/resources/bootstrap/js/bootstrap.min.js"></script>
+  <script src="http://<?php echo $localhost ?>/resources/bootstrap/js/bootstrap.min.js"></script>
 
   <script type="text/javascript">
     function visible(){
@@ -128,7 +128,7 @@ table tr td a {
 
 		function popup_upload(){
 			window.open(
-				"http://localhost/archive/upload.php",
+				"http://<?php echo $localhost ?>/archive/upload.php",
 				"Up",
 				"width="+w+",height="+h+",top="+Top+",left="+Left+", scrollbars=no");
 		}
@@ -138,8 +138,8 @@ table tr td a {
 <body>
 	<header>
     <ul class="nav nav-tabs">
-      <a class="navbar-brand" href="http://localhost" style="padding-top: 0px;"><img height="45px" src="http://localhost/image/logo.png"></a>
-      <li role="presentation" class="active main" onmouseover="javascript:visible()"><a href="http://localhost/archive/main.php">Archive</a></li>
+      <a class="navbar-brand" href="http://<?php echo $localhost ?>" style="padding-top: 0px;"><img height="45px" src="http://<?php echo $localhost ?>/image/logo.png"></a>
+      <li role="presentation" class="active main" onmouseover="javascript:visible()"><a href="http://<?php echo $localhost ?>/archive/main.php">Archive</a></li>
 
       <?php
         if($level == 2 || $level == 1){
@@ -149,13 +149,13 @@ table tr td a {
 
       <?php
         if($level == 1){
-          echo '<li role="presentation" ><a href="http://localhost/archive/admin.php">Admin</a></li>';
+          echo '<li role="presentation" ><a href="http://'.$localhost.'/archive/admin.php">Admin</a></li>';
         }
       ?>
 
       <?php
         echo '<p class="col-md-offset-9" style="margin-top: 10px">안녕하세요 '.$name.' 님! &nbsp
-                <a href="http://localhost/archive/logout.php">logout</a></p>'
+                <a href="http://'.$localhost.'/archive/logout.php">logout</a></p>'
       ?>
     </ul>
 	</header>
@@ -170,7 +170,7 @@ table tr td a {
   </ul>
   </div>
 
-  <form class="form-horizontal" <?php echo 'action="http://localhost/archive/main.php?page=0&searchPre='.$searchText.'&searchPre2='.$searchText2.'"' ?> method="post" style="margin-top: 8vh; margin-bottom: 15vh;">
+  <form class="form-horizontal" <?php echo 'action="http://<?php echo $localhost ?>/archive/main.php?page=0&searchPre='.$searchText.'&searchPre2='.$searchText2.'"' ?> method="post" style="margin-top: 8vh; margin-bottom: 15vh;">
 
   <div class="col-md-1"></div>
     <div class="col-md-4">
@@ -184,7 +184,7 @@ table tr td a {
         <?php
         for($i = 1; $i < 5; $i++){
           $contentsNum = $i * 3;
-          echo '<li role="presentation"><a role="menuitem" tabindex="-1" href="http://localhost/archive/main.php?contents='.$contentsNum.'">'.$contentsNum.'</a></li>';
+          echo '<li role="presentation"><a role="menuitem" tabindex="-1" href="http://<?php echo $localhost ?>/archive/main.php?contents='.$contentsNum.'">'.$contentsNum.'</a></li>';
         }
         ?>
       </ul>
@@ -197,7 +197,7 @@ table tr td a {
           <?php
           for($i = 1; $i < 5; $i++){
             $contentsNum = $i * 3;
-            echo '<li role="presentation"><a role="menuitem" tabindex="-1" href="http://localhost/archive/main.php?contents='.$contentsNum.'">'.$contentsNum.'</a></li>';
+            echo '<li role="presentation"><a role="menuitem" tabindex="-1" href="http://<?php echo $localhost ?>/archive/main.php?contents='.$contentsNum.'">'.$contentsNum.'</a></li>';
           }
           ?>
         </ul>
@@ -210,7 +210,7 @@ table tr td a {
             <?php
             for($i = 1; $i < 5; $i++){
               $contentsNum = $i * 3;
-              echo '<li role="presentation"><a role="menuitem" tabindex="-1" href="http://localhost/archive/main.php?contents='.$contentsNum.'">'.$contentsNum.'</a></li>';
+              echo '<li role="presentation"><a role="menuitem" tabindex="-1" href="http://<?php echo $localhost ?>/archive/main.php?contents='.$contentsNum.'">'.$contentsNum.'</a></li>';
             }
             ?>
           </ul>
@@ -223,7 +223,7 @@ table tr td a {
               <?php
               for($i = 1; $i < 5; $i++){
                 $contentsNum = $i * 3;
-                echo '<li role="presentation"><a role="menuitem" tabindex="-1" href="http://localhost/archive/main.php?contents='.$contentsNum.'">'.$contentsNum.'</a></li>';
+                echo '<li role="presentation"><a role="menuitem" tabindex="-1" href="http://<?php echo $localhost ?>/archive/main.php?contents='.$contentsNum.'">'.$contentsNum.'</a></li>';
               }
               ?>
             </ul>
@@ -241,7 +241,7 @@ table tr td a {
       <?php
       for($i = 1; $i < 5; $i++){
         $contentsNum = $i * 3;
-        echo '<li role="presentation"><a role="menuitem" tabindex="-1" href="http://localhost/archive/main.php?contents='.$contentsNum.'">'.$contentsNum.'</a></li>';
+        echo '<li role="presentation"><a role="menuitem" tabindex="-1" href="http://<?php echo $localhost ?>/archive/main.php?contents='.$contentsNum.'">'.$contentsNum.'</a></li>';
       }
       ?>
     </ul>
@@ -260,8 +260,8 @@ table tr td a {
   </form>
 
   <?php
-    define('UPLOADPATH', 'http://localhost/video/');  //동영상 폴더 경로
-    define('FILEPATH', 'http://localhost/file/');  //동영상 폴더 경로
+    define('UPLOADPATH', 'http://<?php echo $localhost ?>/video/');  //동영상 폴더 경로
+    define('FILEPATH', 'http://<?php echo $localhost ?>/file/');  //동영상 폴더 경로
 
     //Database 및 table 접근하기
     mysqli_select_db($conn, "archive_db");
@@ -354,7 +354,7 @@ table tr td a {
           if($file['video_key']!=null){
             echo '
                   <tbody>
-                    <tr style="cursor:pointer;" onclick="location.href=\'http://localhost/archive/main.php?page='.$page.'&viewNum='.$count.'\'" onmouseover="window.status=\'http://www.happyjung.com/\'" onmouseout="window.status=\'\'">
+                    <tr style="cursor:pointer;" onclick="location.href=\'http://<?php echo $localhost ?>/archive/main.php?page='.$page.'&viewNum='.$count.'\'" onmouseover="window.status=\'http://www.happyjung.com/\'" onmouseout="window.status=\'\'">
                       <td>'.$file['video_key'].'</td>
                       <td>'.$file['shoot_date'].'</td>
                       <td>'.$file['title'].'</td>
@@ -399,7 +399,7 @@ table tr td a {
          $searchText2 = "";
        for($i = 0; $i < $count/$contents; $i++){
          $pageNum = $i + 1;
-         echo '<li><a href="http://localhost/archive/main.php?page='.$i.'&searchPre='.$searchText.'&searchPre2='.$searchText2.'">'.$pageNum.'</a></li>';
+         echo '<li><a href="http://<?php echo $localhost ?>/archive/main.php?page='.$i.'&searchPre='.$searchText.'&searchPre2='.$searchText2.'">'.$pageNum.'</a></li>';
        }
        ?>
  	    <li><a href="#"><span aria-hidden="true">»</span><span class="sr-only">Next</span></a></li>

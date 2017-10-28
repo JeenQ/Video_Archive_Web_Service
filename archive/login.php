@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 
 <?php
-	include 'dbProperty.php';
+	include 'property.php';
 	session_start();
 
 	if(isset($_SESSION['key_num'])){  //로그인 했던 사용자일 경우 메인 페이지로 보내기
 	echo '<script type="text/javascript">'.
-						'location.replace("http://localhost/archive/main.php");'.
+						'location.replace("http://'.$localhost.'/archive/main.php");'.
 							'</script>';
 	}
 
@@ -50,7 +50,7 @@
 													mysqli_query($conn, $query);
 
 													echo '<script type="text/javascript">'.
-											            'location.replace("http://localhost/archive/main.php?page=0");'.
+											            'location.replace("http://'.$localhost.'/archive/main.php?page=0");'.
 											              '</script>';
 													break;
 											}
@@ -86,19 +86,19 @@
 	<title>Archive System</title>
 
 	<!-- import bootstarp for CSS -->
-	<link rel="stylesheet" href="http://localhost/resources/bootstrap/css/bootstrap.css">
+	<link rel="stylesheet" href="http://<?php echo $localhost ?>/resources/bootstrap/css/bootstrap.css">
 
 	<!-- jQuery for using bootstrap.js -->
-	<script src="http://localhost/resources/jquery-3.2.1.min.js"></script>
+	<script src="http://<?php echo $localhost ?>/resources/jquery-3.2.1.min.js"></script>
   <!-- import bootstarp for javascript -->
-  <script src="http://localhost/resources/bootstrap/js/bootstrap.min.js"></script>
+  <script src="http://<?php echo $localhost ?>/resources/bootstrap/js/bootstrap.min.js"></script>
 
 </head>
 <body>
 	<header>
   </header>
 
-	<form class="form-horizontal" action="http://localhost/archive/login.php"  method="post" style="margin-top: 20vh">
+	<form class="form-horizontal" action="http://<?php echo $localhost ?>/archive/login.php"  method="post" style="margin-top: 20vh">
 
 		  <div class="form-group">
 		    <div class="col-md-offset-4 col-md-4">

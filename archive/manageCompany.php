@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 
 <?php
-	  include 'dbProperty.php';
+	  include 'property.php';
     session_start();
     if(!isset($_SESSION['key_num']) || $_SESSION['level']!=1){  //로그인 했던 사용자가 아닐경우 로그인 페이지로 보내기
       echo '<script type="text/javascript">'.
-              'location.replace("http://localhost/archive/login.php");'.
+              'location.replace("http://'.$localhost.'/archive/login.php");'.
                 '</script>';
       exit();
     }
@@ -29,6 +29,6 @@
     }
     
     echo '<script type="text/javascript">'.
-        'location.replace("http://localhost/archive/admin.php");'.
+        'location.replace("http://'.$localhost.'/archive/admin.php");'.
         '</script>';
 ?>

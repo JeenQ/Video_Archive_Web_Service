@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 
 <?php
-	  include 'dbProperty.php';
+	  include 'property.php';
   session_start();
   if(!isset($_SESSION['key_num'])){  //로그인 했던 사용자가 아닐경우 로그인 페이지로 보내기
     echo '<script type="text/javascript">'.
-            'location.replace("http://localhost/archive/login.php");'.
+            'location.replace("http://'.$localhost.'/archive/login.php");'.
               '</script>';
     exit();
   }
@@ -46,7 +46,7 @@
                   && strcasecmp(strrchr($videoName,"."),'.dat') && strcasecmp(strrchr($videoName,"."),'.mkv') && strcasecmp(strrchr($videoName,"."),'.mp4')){  //파일 확장자 체크하기  mov,
 
             //확장자가 잘못됐을 경우, error 값을 1로하고 업로드 페이지로 돌려보낸다
-            echo '<script type="text/javascript">'.'location.replace("http://localhost/archive/upload.php?error=1");'.'</script>';
+            echo '<script type="text/javascript">'.'location.replace("http://'.$localhost.'/archive/upload.php?error=1");'.'</script>';
             exit;
           }
 
@@ -80,13 +80,13 @@
           move_uploaded_file($videoTmp, $videoPath);
         }
         else{
-          echo '<script type="text/javascript">'.'location.replace("http://localhost/archive/upload.php?error=1");'.'</script>';
+          echo '<script type="text/javascript">'.'location.replace("http://'.$localhost.'/archive/upload.php?error=1");'.'</script>';
           exit;
         }
       }
     }
     else{
-      echo '<script type="text/javascript">'.'location.replace("http://localhost/archive/upload.php?error=1");'.'</script>';
+      echo '<script type="text/javascript">'.'location.replace("http://'.$localhost.'/archive/upload.php?error=1");'.'</script>';
       exit;
     }
 

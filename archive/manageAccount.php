@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 
 <?php
-	  include 'dbProperty.php';
+	  include 'property.php';
     session_start();
     if(!isset($_SESSION['key_num']) || $_SESSION['level']!=1){  //로그인 했던 사용자가 아닐경우 로그인 페이지로 보내기
       echo '<script type="text/javascript">'.
-              'location.replace("http://localhost/archive/login.php");'.
+              'location.replace("http://'.$localhost.'/archive/login.php");'.
                 '</script>';
       exit();
     }
@@ -45,7 +45,7 @@
         or die('Error querying database');
 
       echo '<script type="text/javascript">'.
-              'location.replace("http://localhost/archive/admin.php");'.
+              'location.replace("http://'.$localhost.'/archive/admin.php");'.
                 '</script>';
       exit();
 
@@ -53,7 +53,7 @@
       //id 또는 password 가 입력되지 않았을 경우 경고창을 보여준다
       echo '<script>alert("You must enter ID and Password");</script>';
       echo '<script type="text/javascript">'.
-              'location.replace("http://localhost/archive/admin.php");'.
+              'location.replace("http://'.$localhost.'/archive/admin.php");'.
                 '</script>';
       exit();
     }
@@ -63,14 +63,12 @@
 <?php //계정 삭제 요청을 처리하기 위한 블럭
   if(!isset($_GET['id'])){ //삭제요청이 맞는지 확인
     echo '<script type="text/javascript">'.
-            'location.replace("http://localhost/archive/login.php");'.
+            'location.replace("http://'.$localhost.'/archive/login.php");'.
               '</script>';
     exit();
   }
 
   /* DB 연결하기 */
-  $conn = mysqli_connect('localhost', 'root', 123456)
-    or die('Error connection to MySQL server');
   mysqli_select_db($conn, "archive_db");
 
 
@@ -82,7 +80,7 @@
     or die('Error querying database');
 
   echo '<script type="text/javascript">'.
-          'location.replace("http://localhost/archive/admin.php");'.
+          'location.replace("http://'.$localhost.'/archive/admin.php");'.
             '</script>';
   exit();
 
