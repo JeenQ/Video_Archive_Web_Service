@@ -11,19 +11,20 @@
     if(isset($_GET['contents']))
       $_SESSION['contents'] = $_GET['contents'];
 
-    //$id = $_SESSION['id'];  //현재 접속 id 받아오기
+    $key = $_SESSION['key_num'];  //현재 접속 계정 key 받아오기
     $name = $_SESSION['name'];  //현재 접속한 사람의 이름 받아오기
     $level = $_SESSION['level'];  //현재 접속한 사람의 레벨 받아오기
     $contents = $_SESSION['contents'];
     $page = 0;
 
     if(isset($_GET['page']))
-      $page = $_GET['page'];
-
-    $viewNum = $page * $contents;
+        $page = $_GET['page'];
 
     if(isset($_GET['viewNum']))
-      $viewNum = $_GET['viewNum'];
+        $viewNum = $_GET['viewNum'];
+
+    if(!isset($_GET['page']) && !isset($_GET['viewNum']))
+        echo '<script>location.href="http://'.$localhost.'/archive/main.php?page=0&viewNum=0"</script>';
 
     $searchText = "";
     $searchText2 = "";
@@ -139,7 +140,8 @@ table tr td a {
 	<header>
     <ul class="nav nav-tabs">
       <a class="navbar-brand" href="http://<?php echo $localhost ?>" style="padding-top: 0px;"><img height="45px" src="http://<?php echo $localhost ?>/image/logo.png"></a>
-      <li role="presentation" class="active main" onmouseover="javascript:visible()"><a href="http://<?php echo $localhost ?>/archive/main.php">Archive</a></li>
+      <li role="presentation"><a href="http://<?php echo $localhost ?>/archive/main.php">Archive</a></li>
+      <!-- <li role="presentation" class="active main" onmouseover="javascript:visible()"><a href="http://<?php echo $localhost ?>/archive/main.php">Archive</a></li> -->
 
       <?php
         if($level == 2 || $level == 1){
@@ -160,7 +162,7 @@ table tr td a {
     </ul>
 	</header>
 
-  <div>
+  <!-- <div>
   <ul id="category" style="display: none" onmouseover="javascript:visible()" onmouseout="javascript:invisible()" class="category nav nav-pills col-md-offset-1">
     <li role="presentation" class="active"><a href="#">방산</a></li>
     <li role="presentation"><a href="#">코람데오</a></li>
@@ -168,7 +170,7 @@ table tr td a {
     <li role="presentation"><a href="#">인쇄</a></li>
     <li role="presentation"><a href="#">0000</a></li>
   </ul>
-  </div>
+  </div> -->
 
   <form class="form-horizontal" <?php echo 'action="http://<?php echo $localhost ?>/archive/main.php?page=0&searchPre='.$searchText.'&searchPre2='.$searchText2.'"' ?> method="post" style="margin-top: 8vh; margin-bottom: 15vh;">
 
@@ -260,6 +262,7 @@ table tr td a {
   </form>
 
   <?php
+    
     define('UPLOADPATH', 'http://'.$localhost.'/video/');  //동영상 폴더 경로
     define('FILEPATH', 'http://'.$localhost.'/file/');  //동영상 폴더 경로
 
@@ -364,8 +367,9 @@ table tr td a {
                     </tr>
                 </tbody>
                 ';
-            if($count == $viewNum)
-              $videoView = $file;
+            if($count == $viewNum){
+                $videoView = $file;
+            }
           }else{
             break;
           }
@@ -393,14 +397,36 @@ table tr td a {
  	  <ul class="pagination">
  	    <li><a href="#"><span aria-hidden="true">«</span><span class="sr-only">Previous</span></a></li>
        <?php
-       if(!isset($searchText))
-         $searchText = "";
-       if(!isset($searchText2))
-         $searchText2 = "";
-       for($i = 0; $i < $count/$contents; $i++){
-         $pageNum = $i + 1;
-         echo '<li><a href="http://'.$localhost.'/archive/main.php?page='.$i.'&searchPre='.$searchText.'&searchPre2='.$searchText2.'">'.$pageNum.'</a></li>';
-       }
+            if(!isset($searchText))
+                $searchText = "";
+            if(!isset($searchText2))
+                $searchText2 = "";
+            for($i = 0; $i < $count/$contents; $i++){
+                $pageNum = $i + 1;
+                echo '<li><a href="http://'.$localhost.'/archive/main.php?page='.$i.'&searchPre='.$searchText.'&searchPre2='.$searchText2.'">'.$pageNum.'</a></li>';
+            }
+
+            // 삭제 과정
+            if($_GET['remove']==1){
+                $connect = mysqli_query($conn, 'SELECT * FROM tb_video WHERE creater_key = '.$videoView["creater_key"].' AND group_key='.$videoView['group_key']);
+                $rowcount = mysqli_num_rows($connect);
+                unlink($_SERVER['DOCUMENT_ROOT'].'/video/'.$videoView['path']);
+
+                if($rowcount==1){
+                    $connect = mysqli_query($conn, 'SELECT * FROM tb_file WHERE account_key = '.$videoView["creater_key"].' AND group_key = '.$videoView["group_key"]);
+                    if($connect){
+                    while(true){
+                        $file = mysqli_fetch_assoc($connect);
+                        if($file==NULL)
+                            break;
+                        unlink($_SERVER['DOCUMENT_ROOT'].'/file/'.$file['path']);
+                        mysqli_query($conn, 'DELETE FROM tb_file WHERE account_key = '.$videoView["creater_key"].' AND group_key = '.$videoView["group_key"]);                        
+                        }
+                    }
+                }
+                mysqli_query($conn, 'DELETE FROM tb_video WHERE video_key = '.$videoView["video_key"]);
+                echo '<script>location.href="http://'.$localhost.'/archive/main.php"</script>';
+            }
        ?>
  	    <li><a href="#"><span aria-hidden="true">»</span><span class="sr-only">Next</span></a></li>
  	  </ul>
@@ -408,20 +434,38 @@ table tr td a {
 
  </div>
  <div class = "row">
-   <div class="col-md-offset-1 col-md-3">
+   <div class="col-md-offset-1 col-md-5">
      <h3><span class="label label-info">media</span></h3>
    </div>
-   <div class="col-md-3">
+   <div class="col-md-1">
     <h3><span class="label label-info">information</span></h3>
    </div>
    <div class="col-md-offset-2 col-md-3">
-     <p><a href="<?php echo UPLOADPATH.$videoView['path']; //다운로드를 위해서 동영상 url 을 넣어준다 ?>" class="btn btn-primary" role="button" download>다운로드</a>&nbsp&nbsp<a href="#" class="btn btn-danger" role="button" width="20px">수정</a></p>
+     <p>
+        <a href="<?php echo UPLOADPATH.$videoView['path']; //다운로드를 위해서 동영상 url 을 넣어준다 ?>" class="btn btn-primary" role="button" download>다운로드</a>&nbsp&nbsp
+        <!-- 작성자이거나 admin의 경우 삭제 가능 -->
+        <?php
+            if(($key==$videoView['creater_key'] || $_SESSION['level']==1) && $videoView!=NULL){
+                $http_host = $_SERVER['HTTP_HOST'];
+                $request_uri = $_SERVER['REQUEST_URI'];
+                $url = $http_host . $request_uri;
+                echo '<a href="#" class="btn btn-danger" role="button" width="20px" onclick="deleteConfirm()">삭제</a>';
+            }
+        ?>
+        <script>
+            function deleteConfirm(){
+                if(confirm("정말 삭제하시겠습니까?")){
+                    location.href = "<?php echo $request_uri ?>" + "&remove=1";
+                }
+            }
+        </script>
+     </p>
    </div>
  </div>
 
  <div class ="row">
  <div class="col-sm-1"></div>
- <div class="col-sm-3">
+ <div class="col-sm-5">
  <?php
  echo '<div class="thumbnail">
              <video src="'.UPLOADPATH.$videoView['path'].'" width="100%"  controls></video>
@@ -429,24 +473,27 @@ table tr td a {
              </div>
        </div>
    </div>';
- echo '<div class="col-sm-2">
-   <p>크기 : '.$videoView['size'].' MB<br/><br/>
-      업로딩 날짜 : '.$videoView['upload_date'].' <br/><br/>
-      파일 길이 : '.$videoView['length'].' <br/><br/>
-      해상도 : '.$videoView['resolution'].'</p>
-   </div>';
- echo '<div class="col-sm-2">
+ echo '<div class="col-sm-5">
    <p> 촬영일 : '.$videoView['shoot_date'].' <br/><br/>
        내용 : '.$videoView['title'].' <br/><br/>
        업체 : '.$videoView['company'].' <br/><br/>
        촬영장소 : '.$videoView['place'].' <br/><br/>
        촬영자 : '.$videoView['cameraman'].' <br/><br/>
        촬영장비 : '.$videoView['equipment'].'</p>
+       크기 : '.$videoView['size'].' MB<br/><br/>
+       업로딩 날짜 : '.$videoView['upload_date'].' <br/><br/>
  </div>';
  ?>
+ </div>
 
  <!-- 파일 출력 -->
- <div class="col-sm-3">
+ <div class ="row">
+ <div class="col-sm-1"></div>
+ <div class="col-sm-5">
+    <label for="comment">세부내용</label>
+    <textarea readonly class="form-control" rows="6" id="comment"><?php printf("%s", $videoView['detail']);?></textarea>
+ </div>
+ <div class="col-sm-5">
    <table class="table table-striped table-bordered table-hover" >
      <tr>
        <th>파일</th>
@@ -463,6 +510,7 @@ table tr td a {
        }
      ?>
    </table>
+ </div>
  </div>
  </div>
 

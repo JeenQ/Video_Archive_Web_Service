@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- 생성 시간: 17-10-28 12:04
+-- 생성 시간: 17-10-31 12:53
 -- 서버 버전: 5.6.36
 -- PHP 버전: 5.6.31
 
@@ -43,7 +43,7 @@ CREATE TABLE `tb_account` (
 --
 
 INSERT INTO `tb_account` (`key_num`, `id`, `password`, `name`, `position`, `level`, `last_login`) VALUES
-(14, 'admin', 'admin', 'admin', 'admin', 1, '2017-10-28 18:07:18');
+(14, 'admin', 'admin', 'admin', 'admin', 1, '2017-10-31 14:34:43');
 
 -- --------------------------------------------------------
 
@@ -155,7 +155,7 @@ ALTER TABLE `tb_video`
 -- 테이블의 AUTO_INCREMENT `tb_account`
 --
 ALTER TABLE `tb_account`
-  MODIFY `key_num` int(10) NOT NULL AUTO_INCREMENT COMMENT '고유번호', AUTO_INCREMENT=15;
+  MODIFY `key_num` int(10) NOT NULL AUTO_INCREMENT COMMENT '고유번호', AUTO_INCREMENT=16;
 --
 -- 테이블의 AUTO_INCREMENT `tb_category`
 --
@@ -165,12 +165,12 @@ ALTER TABLE `tb_category`
 -- 테이블의 AUTO_INCREMENT `tb_file`
 --
 ALTER TABLE `tb_file`
-  MODIFY `file_key` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `file_key` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 --
 -- 테이블의 AUTO_INCREMENT `tb_video`
 --
 ALTER TABLE `tb_video`
-  MODIFY `video_key` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;COMMIT;
+  MODIFY `video_key` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

@@ -152,38 +152,38 @@
       </div>
     </form>
     <script>
-    function check(){
-      var myform = document.forms['file_send'];
-      if(myform['date'].value.length < 1){
-        alert('촬영일을 입력 하세요.');
-        return false;
+      function check(){
+        var myform = document.forms['file_send'];
+        if(myform['date'].value.length < 1){
+          alert('촬영일을 입력 하세요.');
+          return false;
+        }
+        if(myform['title'].value.length < 1){
+          alert('제목을 입력 하세요.');
+          return false;
+        }
+        if(myform['company'].value.length < 1){
+          alert('업체를 입력 하세요.');
+          return false;
+        }
+        if(myform['place'].value.length < 1){
+          alert('촬영장소를 입력 하세요.');
+          return false;
+        }
+        if(myform['cameraman'].value.length < 1){
+          alert('촬영자를 입력 하세요.');
+          return false;
+        }
+        if(myform['equipment'].value.length < 1){
+          alert('촬영장비를 입력 하세요.');
+          return false;
+        }
+        if(myform['video'].value.length < 1){
+          alert('영상파일이 없습니다.');
+          return false;
+        }
+        return true;
       }
-      if(myform['title'].value.length < 1){
-        alert('제목을 입력 하세요.');
-        return false;
-      }
-      if(myform['company'].value.length < 1){
-        alert('업체를 입력 하세요.');
-        return false;
-      }
-      if(myform['place'].value.length < 1){
-        alert('촬영장소를 입력 하세요.');
-        return false;
-      }
-      if(myform['cameraman'].value.length < 1){
-        alert('촬영자를 입력 하세요.');
-        return false;
-      }
-      if(myform['equipment'].value.length < 1){
-        alert('촬영장비를 입력 하세요.');
-        return false;
-      }
-      if(myform['video'].value.length < 1){
-        alert('영상파일이 없습니다.');
-        return false;
-      }
-      return true;
-    }
     </script>
   </div>
 </body>

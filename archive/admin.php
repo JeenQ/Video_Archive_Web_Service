@@ -142,7 +142,8 @@
 
       <?php
         echo '<p class="col-md-offset-9" style="margin-top: 10px">안녕하세요 '.$name.' 님! &nbsp
-                <a href="http://'.$localhost.'/archive/logout.php">logout</a></p>'
+                <a href="http://'.$localhost.'
+                ">logout</a></p>'
       ?>
     </ul>
 	</header>
