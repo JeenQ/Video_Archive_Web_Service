@@ -156,7 +156,7 @@
       </div>
 
       <div class="panel-body">
-        <form class="form-horizontal" action="http://<?php echo $localhost ?>/archive/manageAccount.php" method="post">
+        <form class="form-horizontal" name="create_account" action="http://<?php echo $localhost ?>/archive/manageAccount.php" method="post" onsubmit="return checkPassword()">
         <div class="form-group">
           <label for="newID" class="col-md-2 control-label">ID</label>
           <div class="col-md-7">
@@ -168,6 +168,13 @@
           <label for="newPassword" class="col-md-2 control-label">Password</label>
           <div class="col-md-7">
             <input type="password" class="form-control" id="newPassword" name="newPassword" placeholder="Password"/>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="rePassword" class="col-md-2 control-label">재입력</label>
+          <div class="col-md-7">
+            <input type="password" class="form-control" id="rePassword" name="rePassword" placeholder="재입력"/>
           </div>
         </div>
 
@@ -206,6 +213,18 @@
           </div>
         </div>
         </form>
+        <script>
+          function checkPassword(){
+            var myform = document.forms["create_account"];
+            if(myform['newPassword'].value != myform['rePassword'].value){
+              alert('Password를 다시 입력하세요');
+              myform['newPassword'].value = "";
+              myform['rePassword'].value = "";
+              return false;
+            }
+            return true;
+          }
+        </script>
       </div>
     </div>
   </div>
