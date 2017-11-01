@@ -77,7 +77,7 @@
   $account = mysqli_fetch_assoc($connect);
 
   if($account['level'] == 1){
-    echo '<script>alert("관리자 계정은 삭제할 수 없습니다!")</script>';
+    echo '<script>alert("관리자 계정은 삭제 할 수 없습니다.")</script>';
   }
   else{
     $query = "DELETE from tb_account where id = '$deleteID'"; //삭제 쿼리문
