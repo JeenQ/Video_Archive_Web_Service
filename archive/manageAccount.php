@@ -71,14 +71,20 @@
   /* DB 연결하기 */
   mysqli_select_db($conn, "archive_db");
 
-
   $deleteID = $_GET['id'];  //몇번째를 삭제하려고 하는지 GET 을 통해 받기
 
-  $query = "DELETE from tb_account where id='$deleteID'"; //삭제 쿼리문
+  $connect = mysqli_query($conn, 'SELECT * FROM tb_account WHERE id = "'.$deleteID.'"');
+  $account = mysqli_fetch_assoc($connect);
 
-  mysqli_query($conn, $query)
-    or die('Error querying database');
+  if($account['level'] == 1){
+    echo '<script>alert("관리자 계정은 삭제할 수 없습니다!")</script>';
+  }
+  else{
+    $query = "DELETE from tb_account where id = '$deleteID'"; //삭제 쿼리문
 
+    mysqli_query($conn, $query)
+      or die('Error querying database');
+  }
   echo '<script type="text/javascript">'.
           'location.replace("http://'.$localhost.'/archive/admin.php");'.
             '</script>';
