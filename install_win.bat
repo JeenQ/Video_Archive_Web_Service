@@ -3,7 +3,8 @@ REM git clone
 call git clone https://github.com/JeenQ/Video_Archive_Web_Service.git
 
 REM 비트나미 설치
-Video_Archive_Web_Service/bitnami-wampstack-7.1.10-1-windows-x64-installer.exe
+powershell "(new-object Net.WebClient).DownloadFile('https://bitnami.com/redirect/to/163357/bitnami-wampstack-7.1.10-1-windows-x64-installer.exe?with_popup_skip_signin=1', 'Video_Archive_Web_Service/bitnami-wampstack-7.1.10-1-windows-x64-installer.exe')"
+Video_Archive_Web_Service\bitnami-wampstack-7.1.10-1-windows-x64-installer.exe
 
 REM Open TCP Port 80 inbound and outbound
 netsh advfirewall firewall add rule name="Zoo TCP Port 80" dir=in action=allow protocol=TCP localport=80
