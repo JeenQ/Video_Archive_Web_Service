@@ -16,8 +16,8 @@ xcopy resources C:\Bitnami\wampstack-5.6.32-0\apache2\htdocs\resources /e /h /k
 copy index.html C:\Bitnami\wampstack-5.6.32-0\apache2\htdocs\index.html
 copy install\php.ini C:\Bitnami\wampstack-5.6.32-0\php\php.ini
 copy install\httpd.conf C:\Bitnami\wampstack-5.6.32-0\apache2\conf\httpd.conf
-mkdir C:\Bitnami\wampstack-5.6.32-0\apache2\htdocs\video
-mkdir C:\Bitnami\wampstack-5.6.32-0\apache2\htdocs\file
+xcopy video C:\Bitnami\wampstack-5.6.32-0\apache2\htdocs\video /e /h /k
+xcopy file C:\Bitnami\wampstack-5.6.32-0\apache2\htdocs\file /e /h /k
 
 REM DB initialization
 set path=%path%;C:\Bitnami\wampstack-5.6.32-0\mysql\bin;

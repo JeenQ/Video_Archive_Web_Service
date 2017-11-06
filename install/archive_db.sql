@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.1
+-- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- 생성 시간: 17-10-31 12:53
--- 서버 버전: 5.6.36
--- PHP 버전: 5.6.31
+-- 생성 시간: 17-11-06 06:52
+-- 서버 버전: 5.6.38
+-- PHP 버전: 5.6.32
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -43,7 +43,7 @@ CREATE TABLE `tb_account` (
 --
 
 INSERT INTO `tb_account` (`key_num`, `id`, `password`, `name`, `position`, `level`, `last_login`) VALUES
-(14, 'admin', 'admin', 'admin', 'admin', 1, '2017-10-31 14:34:43');
+(14, 'admin', 'Big@1', 'admin', 'admin', 1, '2017-11-06 14:46:20');
 
 -- --------------------------------------------------------
 
@@ -87,6 +87,13 @@ CREATE TABLE `tb_file` (
   `group_key` int(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- 테이블의 덤프 데이터 `tb_file`
+--
+
+INSERT INTO `tb_file` (`file_key`, `file_name`, `account_key`, `group_key`) VALUES
+(21, 'file14_20171106065044.pdf', 14, 1509979844);
+
 -- --------------------------------------------------------
 
 --
@@ -111,6 +118,13 @@ CREATE TABLE `tb_video` (
   `length` varchar(15) DEFAULT NULL COMMENT '영상의 길이',
   `resolution` varchar(15) DEFAULT NULL COMMENT '해상도'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- 테이블의 덤프 데이터 `tb_video`
+--
+
+INSERT INTO `tb_video` (`video_key`, `shoot_date`, `title`, `company`, `place`, `cameraman`, `equipment`, `detail`, `extra`, `creater_key`, `group_key`, `path`, `size`, `upload_date`, `length`, `resolution`) VALUES
+(37, '2017-11-06', '토르: 라그나로크 THOR: Ragnarok 1차 공식 예고편', 'KAI', 'test입니다', 'test입니다', 'test입니다', '• 원제: Thor: Ragnarok\r\n• 감독: Taika Waititi\r\n• 북미 개봉일: 2017년 11월 3일\r\n• 한국 개봉일: 2017년 10월 25일', '', 14, 1509979844, 'video14_20171106065044.mp4', '26.46', '2017-11-06 14:50:44', NULL, NULL);
 
 --
 -- 덤프된 테이블의 인덱스
@@ -156,21 +170,25 @@ ALTER TABLE `tb_video`
 --
 ALTER TABLE `tb_account`
   MODIFY `key_num` int(10) NOT NULL AUTO_INCREMENT COMMENT '고유번호', AUTO_INCREMENT=16;
+
 --
 -- 테이블의 AUTO_INCREMENT `tb_category`
 --
 ALTER TABLE `tb_category`
   MODIFY `key_num` int(3) NOT NULL AUTO_INCREMENT COMMENT 'catogory key number';
+
 --
 -- 테이블의 AUTO_INCREMENT `tb_file`
 --
 ALTER TABLE `tb_file`
-  MODIFY `file_key` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `file_key` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+
 --
 -- 테이블의 AUTO_INCREMENT `tb_video`
 --
 ALTER TABLE `tb_video`
-  MODIFY `video_key` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;COMMIT;
+  MODIFY `video_key` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
