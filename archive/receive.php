@@ -98,7 +98,6 @@
           // 여러 개의 파일일때
           if(count($_FILES['file']['name'])>1){
             $fileName = $fileName.'_'.($i+1);
-            $fileName = $fileName.strrchr($file,".");
           }
           $fileName = $fileName.strrchr($file,".");
           $filePath = FILEPATH.basename($fileName);
