@@ -172,7 +172,7 @@ table tr td a {
   </ul>
   </div> -->
 
-  <form class="form-horizontal" <?php echo 'action="http://<?php echo $localhost ?>/archive/main.php?page=0&searchPre='.$searchText.'&searchPre2='.$searchText2.'"' ?> method="post" style="margin-top: 8vh; margin-bottom: 15vh;">
+  <form class="form-horizontal" <?php echo 'action="http://'.$localhost.'/archive/main.php?page=0&searchPre='.$searchText.'&searchPre2='.$searchText2.'"' ?> method="post" style="margin-top: 8vh; margin-bottom: 15vh;">
 
   <div class="col-md-1"></div>
     <div class="col-md-4">
