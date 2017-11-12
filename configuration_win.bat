@@ -15,5 +15,9 @@ net stop wampstackApache
 net start wampstackApache
 
 echo configuration complete
+ipconfig
+echo.
+echo IPv4_address/index.html
+echo.
 
 pause;
