@@ -1,5 +1,8 @@
 @echo off
 
+echo configuration start
+echo.
+
 REM Open TCP Port 80 inbound and outbound
 netsh advfirewall firewall add rule name="Zoo TCP Port 80" dir=in action=allow protocol=TCP localport=80
 netsh advfirewall firewall add rule name="Zoo TCP Port 80" dir=out action=allow protocol=TCP localport=80
@@ -10,3 +13,7 @@ net stop wampstackMySQL
 net start wampstackMySQL
 net stop wampstackApache
 net start wampstackApache
+
+echo configuration complete
+
+pause;
