@@ -139,7 +139,7 @@ table tr td a {
 <body>
 	<header>
     <ul class="nav nav-tabs">
-      <a class="navbar-brand" href="http://<?php echo $localhost ?>" style="padding-top: 0px;"><img height="45px" src="http://<?php echo $localhost ?>/image/logo.png"></a>
+      <a class="navbar-brand" href="http://<?php echo $localhost ?>/archive/main.php" style="padding-top: 0px;"><img height="45px" src="http://<?php echo $localhost ?>/image/logo.png"></a>
       <li role="presentation"><a href="http://<?php echo $localhost ?>/archive/main.php">Archive</a></li>
       <!-- <li role="presentation" class="active main" onmouseover="javascript:visible()"><a href="http://<?php echo $localhost ?>/archive/main.php">Archive</a></li> -->
 
