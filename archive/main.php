@@ -419,7 +419,7 @@ table tr td a {
                         $file = mysqli_fetch_assoc($connect);
                         if($file==NULL)
                             break;
-                        unlink($_SERVER['DOCUMENT_ROOT'].'/file/'.$file['path']);
+                        unlink($_SERVER['DOCUMENT_ROOT'].'/file/'.$file['file_name']);
                         mysqli_query($conn, 'DELETE FROM tb_file WHERE account_key = '.$videoView["creater_key"].' AND group_key = '.$videoView["group_key"]);                        
                         }
                     }
