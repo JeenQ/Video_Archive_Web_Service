@@ -24,7 +24,7 @@ set path=%path%;C:\Bitnami\wampstack-5.6.32-0\mysql\bin;
 mysqladmin -uroot -p123456 password Big@1
 
 REM admin mode configuration
-"install\install_win_admin.bat_.lnk"
+"install\install_win_admin.exe"
 
 REM create DB table
 mysql -uroot -pBig@1 -e "DROP DATABASE IF EXISTS archive_db"
@@ -32,4 +32,8 @@ mysql -uroot -pBig@1 -e "CREATE DATABASE archive_db"
 mysql -uroot -pBig@1 archive_db < install\archive_db.sql
 
 echo install finish
+ipconfig
+echo.
+echo IPv4_address/index.html
+echo.
 pause
